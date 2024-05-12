@@ -17,9 +17,8 @@ return {
                 map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>')
                 map('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
                 map('n', '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>')
-                map('n', '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
-                --map('n', '<leader>gb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-
+                map('n', '<leader>gb', '<cmd>Gitsigns blame_line<CR>')
+                --map('n', '<leader>gB', '<cmd>Gitsigns toggle_current_line_blame<CR>')
             end
         }
     end

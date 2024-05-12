@@ -48,8 +48,8 @@ return {
                 sources = {
                     { name = 'nvim_lsp', priority = 100 },
                     { name = 'nvim_lua' },
-                    { name = 'luasnip',  keyword_length = 2, priority = 70 },
-                    { name = 'buffer',   keyword_length = 3, priority = 90 },
+                    { name = 'buffer',   keyword_length = 3, priority = 90, max_item_count = 5 },
+                    { name = 'luasnip',  keyword_length = 2, priority = 70, max_item_count = 3 },
                 },
                 formatting = {
                     -- changing the order of fields so the icon is the first
@@ -76,6 +76,9 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
                 }),
+                experimental = {
+                    ghost_text = false,
+                },
             })
         end
     },
@@ -146,15 +149,15 @@ return {
                         local lua_opts = lsp_zero.nvim_lua_ls()
                         require('lspconfig').lua_ls.setup(lua_opts)
                     end,
---                    jdtls = function ()
---                        require('jdtls').setup{
---                            java={
---                                format = {
---                                    enabled= true
---                                }
---                            }
---                        }
---                    end
+                    --jdtls = function ()
+                    --    require('jdtls').setup{
+                    --        java={
+                    --            format = {
+                    --                enabled= true
+                    --            }
+                    --        }
+                    --    }
+                    --end
                 }
             })
         end

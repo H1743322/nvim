@@ -21,6 +21,7 @@ return {
                 gitsigns = true,
                 nvimtree = true,
                 treesitter = true,
+                telescope = true,
             },
         })
         vim.cmd.colorscheme "catppuccin"
