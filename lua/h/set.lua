@@ -55,3 +55,4 @@ vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 --vim.opt.timeoutlen = 300
+--vim.opt.inccommand = "split"

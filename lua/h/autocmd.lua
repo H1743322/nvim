@@ -2,7 +2,7 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 local yank_group = augroup('HighlightYank', {})
-local h = augroup('Format', {})
+local h = augroup('H', {})
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -15,18 +15,19 @@ autocmd('TextYankPost', {
     end,
 })
 
---autocmd('FileType', {
---    group = h,
---    pattern = 'javascript',
---    callback = function()
---        vim.keymap.set("n", "<leader>f", "<cmd>!yarn run eslint -f node_modules/eslint-friendly-formatter src test --fix<CR>",{buffer = true})
---    end
---})
 
 autocmd({ "BufWritePre" }, {
     group = h,
     pattern = "*",
     command = [[%s/\s\+$//e]],
+})
+
+autocmd({"User"}, {
+    group = h,
+    pattern = "TelescopePreviewerLoaded",
+    callback = function()
+        vim.wo.wrap = true
+    end,
 })
 
 autocmd({ "BufRead", "BufNewFile" }, {
@@ -36,10 +37,19 @@ autocmd({ "BufRead", "BufNewFile" }, {
     command = 'set filetype=json'
 
 })
+
 --autocmd('FileType', {
 --    group = h,
 --    pattern = 'python',
 --    callback = function()
 --        vim.keymap.set("n", "<leader>f", "<cmd>!black %<cr>", { buffer = true })
 --    end,
+--})
+--
+--autocmd('FileType', {
+--    group = h,
+--    pattern = 'javascript',
+--    callback = function()
+--        vim.keymap.set("n", "<leader>f", "<cmd>!yarn run eslint -f node_modules/eslint-friendly-formatter src test --fix<CR>",{buffer = true})
+--    end
 --})
