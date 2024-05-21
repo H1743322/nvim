@@ -4,8 +4,8 @@ return {
     tag = "0.1.5",
 
     dependencies = {
-        { "nvim-lua/plenary.nvim"},
-       -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+        { "nvim-lua/plenary.nvim" },
+        -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
 
     config = function()
@@ -21,11 +21,12 @@ return {
                     ".yarn/",
                     "yarn.lock",
                     "dist",
-                    "build"
+                    "build",
+                    "package%-lock"
                 },
                 layout_config = {
                     horizontal = {
-                       -- width = 0.9, height = 0.9,
+                        -- width = 0.9, height = 0.9,
                         preview_cutoff = 90, preview_width = 0.6 },
                 },
             },
@@ -43,7 +44,7 @@ return {
         --vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>ff', function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
-                hidden=true,
+                hidden = true,
                 previewer = true,
             }))
         end, { desc = "[/] Fuzzily search in current buffer]" })
@@ -73,6 +74,5 @@ return {
         end)
 
         --require('telescope').load_extension('fzf')
-
     end
 }
