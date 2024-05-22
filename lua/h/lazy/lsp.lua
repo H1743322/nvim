@@ -49,7 +49,7 @@ return {
                     { name = 'nvim_lsp', priority = 100 },
                     { name = 'nvim_lua' },
                     { name = 'buffer',   keyword_length = 3, priority = 90, max_item_count = 5 },
-                    { name = 'luasnip',  keyword_length = 2, priority = 70, max_item_count = 3 },
+                    { name = 'luasnip',  keyword_length = 2, priority = 50, max_item_count = 3 },
                 },
                 formatting = {
                     -- changing the order of fields so the icon is the first

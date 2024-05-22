@@ -45,9 +45,10 @@ nnoremap <Space> <NOP>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+inoremap {} {}<Left>
+inoremap {<CR> {<CR>}<ESC>O
 inoremap " ""<Left>
 inoremap ' ''<left>
-inoremap {<CR> {<CR>}<ESC>O
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
