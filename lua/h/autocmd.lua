@@ -53,3 +53,11 @@ autocmd({ "BufRead", "BufNewFile" }, {
 --        vim.keymap.set("n", "<leader>f", "<cmd>!yarn run eslint -f node_modules/eslint-friendly-formatter src test --fix<CR>",{buffer = true})
 --    end
 --})
+--autocmd('FileType', {
+--    group = h,
+--    pattern = 'Jenkinsfile',
+--    callback = function()
+--        vim.keymap.set("n", "<leader>f", "<cmd>!npm-groovy-lint --fix %<CR>",{buffer = true})
+--    end
+--
+--})
