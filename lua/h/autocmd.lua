@@ -15,14 +15,13 @@ autocmd('TextYankPost', {
     end,
 })
 
-
 autocmd({ "BufWritePre" }, {
     group = h,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
-autocmd({"User"}, {
+autocmd({ "User" }, {
     group = h,
     pattern = "TelescopePreviewerLoaded",
     callback = function()

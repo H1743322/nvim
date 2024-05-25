@@ -66,4 +66,3 @@ noremap <C-Down> :resize -3<CR>
 
 let g:ftplugin_sql_omni_key = '<C-j>'
 ]])
-
