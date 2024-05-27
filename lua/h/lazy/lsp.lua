@@ -112,7 +112,7 @@ return {
                 vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
                 vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
                 vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set("n", "<leader>vd", ':vsp<cr> :lua vim.lsp.buf.definition()<CR><CR>zz')
+                vim.keymap.set("n", "<leader>vd", '<cmd>vsp<cr> <cmd>lua vim.lsp.buf.definition()<CR><CR>zz')
             end)
 
             vim.diagnostic.config({
@@ -125,7 +125,7 @@ return {
                     border = 'rounded',
                     focusable = false,
                     style = "minimal",
-                    source = "always",
+                    source = true,
 
                 },
             })
@@ -135,7 +135,9 @@ return {
                     underline = true,
                     virtual_text = {
                         spacing = 5,
-                        severity_limit = "Warning", -- Set severity_limit to "Warning" or higher
+                        severity = {
+                            min = vim.diagnostic.severity.WARN
+                        }
                     },
                     update_in_insert = true,
 
