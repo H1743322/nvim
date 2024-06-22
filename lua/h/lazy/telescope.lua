@@ -44,6 +44,7 @@ return {
         --vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>ff', function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
+                no_ignore = true,
                 hidden = true,
                 previewer = true,
             }))
