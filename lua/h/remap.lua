@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>vs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 --vim.keymap.set("n", "<c-l>", ":bnext<CR>")
 --vim.keymap.set("n", "<c-h>", ":bprevious<CR>")
 --diff
-vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>")
+vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>:set wrap<CR>:wincmd h<CR>:set wrap<CR>")
 vim.keymap.set("n", "<leader>do", ":windo diffoff<CR>")
 
 
@@ -45,9 +45,10 @@ nnoremap <Space> <NOP>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+inoremap {} {}<Left>
+inoremap {<CR> {<CR>}<ESC>O
 inoremap " ""<Left>
 inoremap ' ''<left>
-inoremap {<CR> {<CR>}<ESC>O
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -65,4 +66,3 @@ noremap <C-Down> :resize -3<CR>
 
 let g:ftplugin_sql_omni_key = '<C-j>'
 ]])
-

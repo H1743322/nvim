@@ -44,17 +44,19 @@ return {
         --vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>ff', function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
+                no_ignore = true,
                 hidden = true,
                 previewer = true,
             }))
-        end, { desc = "[/] Fuzzily search in current buffer]" })
+        end, { desc = "[F]ind [F]iles" })
         --vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<C-p>', function()
             require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
                 previewer = true,
                 windblend = 10,
             }))
-        end, { desc = "[/] Fuzzily search in current buffer]" })
+        end, { desc = "Search git files" })
+
         vim.keymap.set('n', '<leader>fs', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)

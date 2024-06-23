@@ -1,10 +1,10 @@
 return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
---    keys = {
---        { "<leader>t", ":NvimTreeToggle<cr>" },
---    },
---    lazy = true,
+    --    keys = {
+    --        { "<leader>t", ":NvimTreeToggle<cr>" },
+    --    },
+    --    lazy = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
@@ -61,7 +61,7 @@ return {
             git = {
                 enable = true,
                 ignore = false,
-                timeout= 6000
+                timeout = 6000
             },
 
         })

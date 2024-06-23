@@ -15,7 +15,6 @@ autocmd('TextYankPost', {
     end,
 })
 
-
 autocmd({ "BufWritePre" }, {
     group = h,
     pattern = "*",
@@ -48,10 +47,18 @@ autocmd({ "BufRead", "BufNewFile" }, {
 --
 --autocmd('FileType', {
 --    group = h,
---    pattern = 'javascript',
+--    pattern = 'javascript, typescript',
 --    callback = function()
---        vim.keymap.set("n", "<leader>f", "<cmd>!yarn run eslint -f node_modules/eslint-friendly-formatter src test --fix<CR>",{buffer = true})
+--        vim.keymap.set("n", "<leader>f", "<cmd>!yarn run lint --fix<CR>", { buffer = true })
 --    end
+--})
+--autocmd('FileType', {
+--    group = h,
+--    pattern = 'Jenkinsfile, groovy',
+--    callback = function()
+--        vim.keymap.set("n", "<leader>f", "<cmd>!npm-groovy-lint --fix %<CR>", { buffer = true })
+--    end
+--
 --})
 autocmd('LspAttach', {
     group = h,

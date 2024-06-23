@@ -34,7 +34,7 @@ return {
                     { name = 'nvim_lsp', priority = 100 },
                     { name = 'nvim_lua' },
                     { name = 'buffer',   keyword_length = 3, priority = 90, max_item_count = 5 },
-                    { name = 'luasnip',  keyword_length = 2, priority = 70, max_item_count = 3 },
+                    { name = 'luasnip',  keyword_length = 2, priority = 50, max_item_count = 3 },
                 },
                 formatting = {
                     -- changing the order of fields so the icon is the first
@@ -78,6 +78,28 @@ return {
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function()
+            -- This is where all the LSP shenanigans will live
+            local lsp_zero = require('lsp-zero')
+            lsp_zero.extend_lspconfig()
+
+            --- if you want to know more about lsp-zero and mason.nvim
+            --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+            lsp_zero.on_attach(function(client, bufnr)
+                -- see :help lsp-zero-keybindings
+                -- to learn the available actions
+                lsp_zero.default_keymaps({ buffer = bufnr })
+                local opts = { buffer = bufnr, remap = false }
+
+
+                vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, opts)
+                vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end, opts)
+                vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+                vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+                vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+                vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+                vim.keymap.set("n", "<leader>vd", '<cmd>vsp<cr> <cmd>lua vim.lsp.buf.definition()<CR><CR>zz')
+            end)
+
             vim.diagnostic.config({
                 virtual_text = true,
                 severity_sort = true,
@@ -88,7 +110,7 @@ return {
                     border = 'rounded',
                     focusable = false,
                     style = "minimal",
-                    source = "always",
+                    source = "if_many",
 
                 },
             })
@@ -98,7 +120,9 @@ return {
                     underline = true,
                     virtual_text = {
                         spacing = 5,
-                        severity_limit = "Warning", -- Set severity_limit to "Warning" or higher
+                        severity = {
+                            min = vim.diagnostic.severity.WARN
+                        }
                     },
                     update_in_insert = true,
 
