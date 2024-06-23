@@ -60,6 +60,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 --    end
 --
 --})
+
 autocmd('LspAttach', {
     group = h,
     callback = function(event)
