@@ -18,12 +18,13 @@ return {
         config = function()
             -- Here is where you configure the autocompletion settings.
 
-            -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
             local ls = require("luasnip")
             require('luasnip.loaders.from_vscode').lazy_load()
+
             vim.keymap.set({ "i", "s" }, "<C-s>;", function() ls.jump(1) end, { silent = true })
             vim.keymap.set({ "i", "s" }, "<C-s>,", function() ls.jump(-1) end, { silent = true })
+
             cmp.setup({
                 snippet = {
                     expand = function(args)
@@ -107,14 +108,15 @@ return {
 
                 })
 
-            local cmp_lsp = require("cmp_nvim_lsp")
-            local capabilities = vim.tbl_deep_extend(
-                "force",
-                {},
-                vim.lsp.protocol.make_client_capabilities(),
-                cmp_lsp.default_capabilities())
 
-            capabilities = require('cmp_nvim_lsp').default_capabilities()
+            --local cmp_lsp = require("cmp_nvim_lsp")
+            --local lsp_capabilities = vim.tbl_deep_extend(
+            --    "force",
+            --    {},
+            --    vim.lsp.protocol.make_client_capabilities(),
+            --    cmp_lsp.default_capabilities())
+
+            local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -123,14 +125,14 @@ return {
                 handlers = {
                     function(server_name) -- default handler (optional)
                         require("lspconfig")[server_name].setup {
-                            capabilities = capabilities
+                            capabilities = lsp_capabilities
                         }
                     end,
 
-                    ["lua_ls"] = function()
+                    lua_ls = function()
                         local lspconfig = require("lspconfig")
                         lspconfig.lua_ls.setup {
-                            capabilities = capabilities,
+                            capabilities = lsp_capabilities,
                             settings = {
                                 Lua = {
                                     diagnostics = {
