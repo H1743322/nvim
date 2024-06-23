@@ -79,7 +79,6 @@ return {
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function()
-
             vim.diagnostic.config({
                 virtual_text = true,
                 severity_sort = true,
@@ -107,6 +106,7 @@ return {
                     update_in_insert = true,
 
                 })
+            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded"})
 
 
             --local cmp_lsp = require("cmp_nvim_lsp")
@@ -117,6 +117,7 @@ return {
             --    cmp_lsp.default_capabilities())
 
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local lspconfig = require("lspconfig")
 
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -130,7 +131,6 @@ return {
                     end,
 
                     lua_ls = function()
-                        local lspconfig = require("lspconfig")
                         lspconfig.lua_ls.setup {
                             capabilities = lsp_capabilities,
                             settings = {
