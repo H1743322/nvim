@@ -84,7 +84,7 @@ return {
                 },
                 signs = true,
                 severity_sort = true,
-                underline = false,
+                underline = true,
                 --{
                 --    severity = {
                 --        max = vim.diagnostic.severity.HINT,
