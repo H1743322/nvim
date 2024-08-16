@@ -55,7 +55,6 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
-                --formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
                     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
                 }),

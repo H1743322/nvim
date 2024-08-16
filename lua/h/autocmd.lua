@@ -66,7 +66,9 @@ autocmd('LspAttach', {
     callback = function(event)
         local opts = { buffer = event.buf }
         vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, opts)
+        vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
         vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end, opts)
+        vim.keymap.set("n", "gi", function() require('telescope.builtin').lsp_implementations() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "gs", function() vim.diagnostic.signature_help() end, opts)
