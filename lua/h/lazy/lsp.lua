@@ -1,21 +1,9 @@
 return {
     {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        lazy = true,
-        config = false,
-        init = function()
-            -- Disable automatic setup, we are doing it manually
-            vim.g.lsp_zero_extend_cmp = 0
-            vim.g.lsp_zero_extend_lspconfig = 0
-        end,
-    },
-    {
         'williamboman/mason.nvim',
         lazy = false,
         config = true,
     },
-
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
@@ -28,17 +16,14 @@ return {
             { 'saadparwaiz1/cmp_luasnip' }
         },
         config = function()
-            -- Here is where you configure the autocompletion settings.
-            local lsp_zero = require('lsp-zero')
-            lsp_zero.extend_cmp()
 
-            -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
-            local cmp_action = lsp_zero.cmp_action()
             local ls = require("luasnip")
             require('luasnip.loaders.from_vscode').lazy_load()
+
             vim.keymap.set({ "i", "s" }, "<C-s>;", function() ls.jump(1) end, { silent = true })
             vim.keymap.set({ "i", "s" }, "<C-s>,", function() ls.jump(-1) end, { silent = true })
+
             cmp.setup({
                 snippet = {
                     expand = function(args)
@@ -52,10 +37,8 @@ return {
                     { name = 'luasnip',  keyword_length = 2, priority = 50, max_item_count = 3 },
                 },
                 formatting = {
-                    -- changing the order of fields so the icon is the first
                     fields = { 'abbr', 'menu', 'kind' },
 
-                    -- here is where the change happens
                     format = function(entry, item)
                         local menu_icon = {
                             nvim_lsp = '[λ]',
@@ -93,33 +76,21 @@ return {
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function()
-            -- This is where all the LSP shenanigans will live
-            local lsp_zero = require('lsp-zero')
-            lsp_zero.extend_lspconfig()
-
-            --- if you want to know more about lsp-zero and mason.nvim
-            --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-            lsp_zero.on_attach(function(client, bufnr)
-                -- see :help lsp-zero-keybindings
-                -- to learn the available actions
-                lsp_zero.default_keymaps({ buffer = bufnr })
-                local opts = { buffer = bufnr, remap = false }
-
-
-                vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, opts)
-                vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end, opts)
-                vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-                vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-                vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-                vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set("n", "<leader>vd", '<cmd>vsp<cr> <cmd>lua vim.lsp.buf.definition()<CR><CR>zz')
-            end)
-
             vim.diagnostic.config({
-                virtual_text = true,
+                virtual_text = {
+                    severity = {
+                        min = vim.diagnostic.severity.WARN
+                    }
+                },
+                signs = true,
                 severity_sort = true,
                 underline = true,
-                update_in_insert = true,
+                --{
+                --    severity = {
+                --        max = vim.diagnostic.severity.HINT,
+                --    },
+                --},
+                update_in_insert = false,
                 float = {
                     header = '',
                     border = 'rounded',
@@ -129,37 +100,42 @@ return {
 
                 },
             })
-            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                {
-                    signs = true,
-                    underline = true,
-                    virtual_text = {
-                        spacing = 5,
-                        severity = {
-                            min = vim.diagnostic.severity.WARN
-                        }
-                    },
-                    update_in_insert = true,
 
-                })
-            require('mason-lspconfig').setup({
-                ensure_installed = {},
+            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+
+            --local cmp_lsp = require("cmp_nvim_lsp")
+            --local lsp_capabilities = vim.tbl_deep_extend(
+            --    "force",
+            --    {},
+            --    vim.lsp.protocol.make_client_capabilities(),
+            --    cmp_lsp.default_capabilities())
+            local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            local lspconfig = require("lspconfig")
+
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                },
                 handlers = {
-                    lsp_zero.default_setup,
-                    lua_ls = function()
-                        -- (Optional) Configure lua language server for neovim
-                        local lua_opts = lsp_zero.nvim_lua_ls()
-                        require('lspconfig').lua_ls.setup(lua_opts)
+                    function(server_name)
+                        require("lspconfig")[server_name].setup {
+                            capabilities = lsp_capabilities
+                        }
                     end,
-                    --jdtls = function ()
-                    --    require('jdtls').setup{
-                    --        java={
-                    --            format = {
-                    --                enabled= true
-                    --            }
-                    --        }
-                    --    }
-                    --end
+
+                    lua_ls = function()
+                        lspconfig.lua_ls.setup {
+                            capabilities = lsp_capabilities,
+                            settings = {
+                                Lua = {
+                                    diagnostics = {
+                                        globals = { "vim", "it", "describe", "before_each", "after_each" },
+                                    }
+                                }
+                            }
+                        }
+                    end,
                 }
             })
         end
