@@ -24,8 +24,8 @@ vim.opt.smartcase = true
 
 vim.o.splitright = true
 vim.o.splitbelow = true
-vim.opt.termguicolors = true
 
+vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"

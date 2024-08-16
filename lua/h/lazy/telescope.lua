@@ -18,7 +18,7 @@ return {
                 file_ignore_patterns = {
                     "node_modules",
                     ".git\\",
-                    ".yarn/",
+                    ".yarn\\",
                     "yarn.lock",
                     "dist",
                     "build",
@@ -49,6 +49,7 @@ return {
                 previewer = true,
             }))
         end, { desc = "[F]ind [F]iles" })
+
         --vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<C-p>', function()
             require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
@@ -60,20 +61,22 @@ return {
         vim.keymap.set('n', '<leader>fs', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
+
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
         vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-        vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
         vim.keymap.set('n', '<leader>frr', builtin.lsp_references)
+        vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
+        vim.keymap.set('n', '<leader>fW', function()
+            local word = vim.fn.expand("<cWORD>")
+            builtin.grep_string({ search = word })
+        end)
+
         vim.keymap.set('n', '<leader>/', function()
             require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
                 previewer = false,
             }))
         end, { desc = "[/] Fuzzily search in current buffer]" })
-        vim.keymap.set('n', '<leader>fW', function()
-            local word = vim.fn.expand("<cWORD>")
-            builtin.grep_string({ search = word })
-        end)
 
         --require('telescope').load_extension('fzf')
     end

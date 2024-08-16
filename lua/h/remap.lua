@@ -12,15 +12,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- next greatest remap ever : asbjornHaland
+--clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
 
--- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
+
 vim.keymap.set("n", "Q", "<nop>")
+
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -32,6 +33,7 @@ vim.keymap.set("n", "<leader>vs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 
 --vim.keymap.set("n", "<c-l>", ":bnext<CR>")
 --vim.keymap.set("n", "<c-h>", ":bprevious<CR>")
+
 --diff
 vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>:set wrap<CR>:wincmd h<CR>:set wrap<CR>")
 vim.keymap.set("n", "<leader>do", ":windo diffoff<CR>")
