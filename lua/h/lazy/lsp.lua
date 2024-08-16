@@ -16,7 +16,6 @@ return {
             { 'saadparwaiz1/cmp_luasnip' }
         },
         config = function()
-            -- Here is where you configure the autocompletion settings.
 
             local cmp = require('cmp')
             local ls = require("luasnip")
@@ -38,10 +37,8 @@ return {
                     { name = 'luasnip',  keyword_length = 2, priority = 50, max_item_count = 3 },
                 },
                 formatting = {
-                    -- changing the order of fields so the icon is the first
                     fields = { 'abbr', 'menu', 'kind' },
 
-                    -- here is where the change happens
                     format = function(entry, item)
                         local menu_icon = {
                             nvim_lsp = '[λ]',
@@ -80,10 +77,20 @@ return {
         },
         config = function()
             vim.diagnostic.config({
-                virtual_text = true,
+                virtual_text = {
+                    severity = {
+                        min = vim.diagnostic.severity.WARN
+                    }
+                },
+                signs = true,
                 severity_sort = true,
-                underline = true,
-                update_in_insert = true,
+                underline = false,
+                --{
+                --    severity = {
+                --        max = vim.diagnostic.severity.HINT,
+                --    },
+                --},
+                update_in_insert = false,
                 float = {
                     header = '',
                     border = 'rounded',
@@ -93,21 +100,8 @@ return {
 
                 },
             })
-            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                {
-                    signs = true,
-                    underline = true,
-                    virtual_text = {
-                        spacing = 5,
-                        severity = {
-                            min = vim.diagnostic.severity.WARN
-                        }
-                    },
-                    update_in_insert = true,
 
-                })
-            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded"})
-
+            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
             --local cmp_lsp = require("cmp_nvim_lsp")
             --local lsp_capabilities = vim.tbl_deep_extend(
@@ -115,8 +109,8 @@ return {
             --    {},
             --    vim.lsp.protocol.make_client_capabilities(),
             --    cmp_lsp.default_capabilities())
-
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
             local lspconfig = require("lspconfig")
 
             require("mason-lspconfig").setup({
@@ -124,7 +118,7 @@ return {
                     "lua_ls",
                 },
                 handlers = {
-                    function(server_name) -- default handler (optional)
+                    function(server_name)
                         require("lspconfig")[server_name].setup {
                             capabilities = lsp_capabilities
                         }
