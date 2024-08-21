@@ -77,7 +77,9 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("n", "<leader>vd", ':vsp<cr> :lua vim.lsp.buf.definition()<CR><CR>zz')
-        --TODO: inlay hints keymap
+        vim.keymap.set("n", "<leader>vh",
+            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 }) end,
+            opts)
         vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)

@@ -130,11 +130,32 @@ return {
                                 Lua = {
                                     diagnostics = {
                                         globals = { "vim", "it", "describe", "before_each", "after_each" },
-                                    }
+                                    },
+                                    --hint = {
+                                    --    enable = true
+                                    --}
                                 }
                             }
                         }
                     end,
+                    --gopls = function()
+                    --    lspconfig.gopls.setup {
+                    --        capabilities = lsp_capabilities,
+                    --        settings = {
+                    --            gopls = {
+                    --                hints = {
+                    --                    assignVariableTypes = true,
+                    --                    compositeLiteralFields = true,
+                    --                    compositeLiteralTypes = true,
+                    --                    constantValues = true,
+                    --                    functionTypeParameters = true,
+                    --                    parameterNames = true,
+                    --                    rangeVariableTypes = true,
+                    --                },
+                    --            },
+                    --        },
+                    --    }
+                    --end
                 }
             })
         end
