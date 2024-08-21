@@ -22,8 +22,6 @@ vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 --vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
