@@ -18,7 +18,7 @@ autocmd('TextYankPost', {
 autocmd({ "BufWritePre" }, {
     group = h,
     pattern = "*",
-    command = [[%s/^\s\+$//e]],
+    command = [[%s/\s\+$//e]],
 })
 
 autocmd({ "User" }, {
