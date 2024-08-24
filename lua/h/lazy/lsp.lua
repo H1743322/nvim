@@ -45,8 +45,8 @@ return {
                             nvim_lsp = '[λ]',
                             luasnip = '[⋗]',
                             buffer = '[Ω]',
-                            path = '[]',
-                            nvim_lua = '[Π]',
+                            path = '[Π]',
+                            nvim_lua = '[φ]',
                         }
                         item.menu = menu_icon[entry.source.name]
                         return item
