@@ -20,6 +20,7 @@ return {
         -- OR setup with some options
         require("nvim-tree").setup({
             diagnostics = {
+                enable = false,
             },
             sort = {
                 sorter = "case_sensitive",
@@ -52,11 +53,16 @@ return {
                     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
                 end,
             },
+            actions = {
+                open_file = {
+                    quit_on_open = true,
+                },
+            },
             renderer = {
                 group_empty = true,
             },
             filters = {
-                --dotfiles = false,
+                dotfiles = false,
             },
             git = {
                 enable = true,
