@@ -11,12 +11,12 @@ return {
         dependencies = {
             { 'L3MON4D3/LuaSnip' },
             { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'rafamadriz/friendly-snippets' },
             { 'saadparwaiz1/cmp_luasnip' }
         },
         config = function()
-
             local cmp = require('cmp')
             local ls = require("luasnip")
             require('luasnip.loaders.from_vscode').lazy_load()
@@ -31,10 +31,11 @@ return {
                     end,
                 },
                 sources = {
-                    { name = 'nvim_lsp', priority = 100 },
+                    { name = 'nvim_lsp' },
                     { name = 'nvim_lua' },
-                    { name = 'buffer',   keyword_length = 3, priority = 90, max_item_count = 5 },
-                    { name = 'luasnip',  keyword_length = 2, priority = 50, max_item_count = 3 },
+                    { name = 'buffer',  keyword_length = 3 },
+                    { name = 'path' },
+                    { name = 'luasnip', keyword_length = 2, max_item_count = 3 },
                 },
                 formatting = {
                     fields = { 'abbr', 'menu', 'kind' },
@@ -44,8 +45,8 @@ return {
                             nvim_lsp = '[λ]',
                             luasnip = '[⋗]',
                             buffer = '[Ω]',
-                            path = '🖫',
-                            nvim_lua = 'Π',
+                            path = '[]',
+                            nvim_lua = '[Π]',
                         }
                         item.menu = menu_icon[entry.source.name]
                         return item
