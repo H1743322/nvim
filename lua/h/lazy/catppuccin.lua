@@ -6,9 +6,9 @@ return {
     config = function()
         require 'catppuccin'.setup({
             transparent_background = true,
-            no_italic = true,     -- Force no italic
-            no_bold = false,      -- Force no bold
-            no_underline = true, -- Force no underline
+            no_italic = true,
+            no_bold = false,
+            no_underline = true,
             color_overrides = {
                 mocha = {
                     base = "#000000",

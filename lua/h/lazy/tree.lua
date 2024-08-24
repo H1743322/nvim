@@ -1,10 +1,6 @@
 return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
-    --    keys = {
-    --        { "<leader>t", ":NvimTreeToggle<cr>" },
-    --    },
-    --    lazy = true,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
@@ -12,12 +8,11 @@ return {
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
 
-        -- set termguicolors to enable highlight groups
         vim.opt.termguicolors = true
 
-        local HEIGHT_RATIO = 1  -- You can change this
-        local WIDTH_RATIO = 0.2 -- You can change this too
-        -- OR setup with some options
+        local HEIGHT_RATIO = 1
+        local WIDTH_RATIO = 0.2
+
         require("nvim-tree").setup({
             diagnostics = {
                 enable = false,

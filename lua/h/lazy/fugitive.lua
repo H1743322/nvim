@@ -1,8 +1,5 @@
 return {
     "tpope/vim-fugitive",
-    -- keys = {
-    --     { "<leader>gg", "<cmd>:tab G<cr>" },
-    -- },
     event = "VeryLazy",
     config = function()
         vim.keymap.set("n", "<leader>gg", '<cmd>:tab G<cr>')
