@@ -3,6 +3,15 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VeryLazy",
     config = function()
+        local function trunc(trunc_len, no_ellipsis)
+            return function(str)
+                if trunc_len and #str > trunc_len then
+                    return str:sub(1, trunc_len) .. (no_ellipsis and '' or '…')
+                end
+                return str
+            end
+        end
+
         require('lualine').setup {
             options = {
                 icons_enabled = true,
@@ -24,7 +33,7 @@ return {
             },
             sections = {
                 lualine_a = { 'mode' },
-                lualine_b = { 'branch', 'diff',
+                lualine_b = { { 'branch', fmt = trunc(28, false) }, 'diff',
                     { 'diagnostics',
                         symbols = { error = 'E:',
                             warn = 'W:',
