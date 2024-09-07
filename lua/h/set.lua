@@ -34,17 +34,17 @@ vim.opt.isfname:append("@-@")
 vim.opt.hidden = true
 --vim.opt.colorcolumn = "120"
 
---netrw
+-- Netrw
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 --vim.g.netrw_winsize = 25
 
---Line wrap
+-- Line wrap
 vim.opt.wrap = true
 vim.opt.breakindent = false
 vim.opt.linebreak = true
 
--- fileformat
+-- Fileformat
 --vim.o.fileformat = "unix"
 
 --remove tild
