@@ -31,6 +31,19 @@ return {
                 },
             },
             pickers = {
+                find_files = {
+                    hidden = true
+                },
+                live_grep = {
+                    additional_args = function()
+                        return { '--hidden' }
+                    end
+                },
+                grep_string = {
+                    additional_args = function()
+                        return { '--hidden' }
+                    end
+                },
                 buffers = {
                     show_all_buffers = true,
                     sort_lastused = true,
