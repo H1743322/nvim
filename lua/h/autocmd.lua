@@ -39,14 +39,14 @@ autocmd({ "BufRead", "BufNewFile" }, {
 
 --autocmd('FileType', {
 --    group = h,
---    pattern = 'javascript, typescript',
+--    pattern = { 'javascript', 'typescript' },
 --    callback = function()
 --        vim.keymap.set("n", "<leader>vf", "<cmd>!yarn run lint --fix<CR>", { buffer = true })
 --    end
 --})
 --autocmd('FileType', {
 --    group = h,
---    pattern = 'Jenkinsfile, groovy',
+--    pattern = { 'Jenkinsfile', 'groovy' },
 --    callback = function()
 --        vim.keymap.set("n", "<leader>vf", "<cmd>!npm-groovy-lint --fix %<CR>", { buffer = true })
 --    end
