@@ -35,11 +35,14 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { { 'branch', fmt = trunc(28, false) }, 'diff',
                     { 'diagnostics',
-                        symbols = { error = 'E:',
-                            warn = 'W:',
-                            info = 'I:',
-                            hint = 'H:' },
-                    } },
+                        symbols = {
+                            error = 'e',
+                            warn = 'w',
+                            info = 'i',
+                            hint = 'h'
+                        }
+                    }
+                },
                 lualine_c = { { 'filename', path = 1 } },
                 lualine_x = { 'encoding', 'fileformat', 'filetype' },
                 lualine_y = { 'progress' },
