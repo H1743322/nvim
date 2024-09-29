@@ -13,7 +13,6 @@ return {
                 map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 
                 -- Actions
-                map('n', '<leader>gd', '<cmd>Gitsigns diffthis<CR>:set wrap<CR>:wincmd h<CR>:set wrap<CR>')
                 map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>')
                 map('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
                 map('n', '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>')

@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>vs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 --vim.keymap.set("n", "<c-h>", ":bprevious<CR>")
 
 -- Diff
-vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>:set wrap<CR>:wincmd h<CR>:set wrap<CR>")
+vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>:windo set wrap<CR>")
 vim.keymap.set("n", "<leader>do", ":windo diffoff<CR>")
 
 
