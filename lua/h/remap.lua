@@ -46,7 +46,9 @@ vim.keymap.set("n", "<leader>do", ":windo diffoff<CR>")
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.cmd([[
+
 nnoremap <Space> <NOP>
+
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
@@ -54,6 +56,8 @@ inoremap {} {}<Left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap " ""<Left>
 inoremap ' ''<left>
+inoremap ` ``<left>
+
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
