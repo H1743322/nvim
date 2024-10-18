@@ -8,7 +8,7 @@ return {
             transparent_background = true,
             no_italic = true,
             no_bold = false,
-            no_underline = true,
+            no_underline = false,
             color_overrides = {
                 mocha = {
                     base = "#000000",
