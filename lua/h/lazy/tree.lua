@@ -55,6 +55,8 @@ return {
             },
             renderer = {
                 group_empty = true,
+                full_name = true,
+                indent_width = 1,
             },
             filters = {
                 dotfiles = false,
