@@ -57,13 +57,13 @@ return {
                 },
             }
         }
-        --vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+        -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>ff', function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
                 previewer = true,
             }))
         end)
-        --vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+        -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<C-p>', function()
             require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
                 previewer = true,
@@ -88,6 +88,6 @@ return {
             }))
         end)
 
-        --require('telescope').load_extension('fzf')
+        -- require('telescope').load_extension('fzf')
     end
 }

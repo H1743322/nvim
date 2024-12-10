@@ -14,7 +14,7 @@ vim.opt.autoindent = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
---vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
@@ -32,12 +32,12 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.hidden = true
---vim.opt.colorcolumn = "120"
+-- vim.opt.colorcolumn = "120"
 
 -- Netrw
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
---vim.g.netrw_winsize = 25
+-- vim.g.netrw_winsize = 25
 
 -- Line wrap
 vim.opt.wrap = true
@@ -45,14 +45,14 @@ vim.opt.breakindent = false
 vim.opt.linebreak = true
 
 -- Fileformat
---vim.o.fileformat = "unix"
+-- vim.o.fileformat = "unix"
 
---remove tild
---vim.opt.fillchars = { eob = " " }
+-- remove tild
+-- vim.opt.fillchars = { eob = " " }
 
--- Decrease update time
-vim.opt.updatetime = 50
+-- Decrease update time, 50?
+vim.opt.updatetime = 300
 
 -- Decrease mapped sequence wait time
---vim.opt.timeoutlen = 300
---vim.opt.inccommand = "split"
+-- vim.opt.timeoutlen = 300
+-- vim.opt.inccommand = "split"

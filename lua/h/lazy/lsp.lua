@@ -27,7 +27,7 @@ return {
             cmp.setup({
                 snippet = {
                     expand = function(args)
-                        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                        require('luasnip').lsp_expand(args.body)
                     end,
                 },
                 sources = {
@@ -85,11 +85,11 @@ return {
                 signs = true,
                 severity_sort = true,
                 underline = true,
-                --{
+                -- {
                 --    severity = {
                 --        max = vim.diagnostic.severity.HINT,
                 --    },
-                --},
+                -- },
                 update_in_insert = false,
                 float = {
                     header = '',
@@ -104,8 +104,8 @@ return {
             vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
             vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
-            --local cmp_lsp = require("cmp_nvim_lsp")
-            --local lsp_capabilities = vim.tbl_deep_extend(
+            -- local cmp_lsp = require("cmp_nvim_lsp")
+            -- local lsp_capabilities = vim.tbl_deep_extend(
             --    "force",
             --    {},
             --    vim.lsp.protocol.make_client_capabilities(),
@@ -133,14 +133,14 @@ return {
                                     diagnostics = {
                                         globals = { "vim", "it", "describe", "before_each", "after_each" },
                                     },
-                                    --hint = {
+                                    -- hint = {
                                     --    enable = true
-                                    --}
+                                    -- }
                                 }
                             }
                         }
                     end,
-                    --gopls = function()
+                    -- gopls = function()
                     --    lspconfig.gopls.setup {
                     --        capabilities = lsp_capabilities,
                     --        settings = {
@@ -157,7 +157,7 @@ return {
                     --            },
                     --        },
                     --    }
-                    --end
+                    -- end
                 }
             })
         end

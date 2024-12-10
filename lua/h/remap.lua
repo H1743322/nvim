@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
---vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>fe", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -29,13 +29,13 @@ vim.keymap.set("n", "Q", "<nop>")
 -- CList
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
---vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
---vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>vs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
---vim.keymap.set("n", "<c-l>", ":bnext<CR>")
---vim.keymap.set("n", "<c-h>", ":bprevious<CR>")
+-- vim.keymap.set("n", "<c-l>", ":bnext<CR>")
+-- vim.keymap.set("n", "<c-h>", ":bprevious<CR>")
 
 -- Diff
 vim.keymap.set("n", "<leader>dt", ":windo diffthis<CR>:windo set wrap<CR>")
