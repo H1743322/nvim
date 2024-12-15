@@ -17,7 +17,7 @@ return {
         end
 
         local function get_active_clients()
-            local msg = 'NoLsp'
+            local msg = ''
             local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
             local clients = vim.lsp.get_active_clients()
             if next(clients) == nil then

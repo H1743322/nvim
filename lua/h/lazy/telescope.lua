@@ -12,7 +12,7 @@ return {
         local builtin = require('telescope.builtin')
         require "telescope".setup {
             defaults = {
-                wrap_results = true,
+                wrap_results = false,
                 preview = {
                     treesitter = false
                 },
@@ -81,6 +81,14 @@ return {
         vim.keymap.set('n', '<leader>fW', function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
+        end)
+        vim.keymap.set('v', '<leader>fw', function()
+            vim.cmd('normal! "vy')
+            local text = vim.fn.getreg('v')
+            -- text = string.gsub(selected_text, "\n", "")
+            if text and #text > 0 then
+                builtin.grep_string({ search = text })
+            end
         end)
         vim.keymap.set('n', '<leader>/', function()
             require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
