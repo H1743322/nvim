@@ -1,13 +1,10 @@
 return {
     "nvim-telescope/telescope.nvim",
-
     tag = "0.1.8",
-
     dependencies = {
         { "nvim-lua/plenary.nvim" },
         -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
-
     config = function()
         local builtin = require('telescope.builtin')
         require "telescope".setup {
@@ -18,8 +15,9 @@ return {
                 },
                 file_ignore_patterns = {
                     "node_modules",
-                    "%.git\\",
-                    "%.yarn\\",
+                    "%.git",
+                    "%.yarn",
+                    "obj",
                     "yarn%.lock",
                     "dist",
                     "build",

@@ -61,6 +61,7 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
         vim.keymap.set("n", "gr", function() require('telescope.builtin').lsp_references() end, opts)
         vim.keymap.set("n", "gi", function() require('telescope.builtin').lsp_implementations() end, opts)
+        vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
@@ -70,7 +71,9 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("n", "<leader>vd", ':vsp<cr> :lua vim.lsp.buf.definition()<CR><CR>zz', opts)
         vim.keymap.set("n", "<leader>vh",
-            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 }) end,
+            function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
+            end,
             opts)
         vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
