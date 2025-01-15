@@ -37,12 +37,12 @@ return {
                 },
                 live_grep = {
                     additional_args = function()
-                        return { '--hidden' }
+                        return { '--hidden', '--max-filesize', '10M' }
                     end
                 },
                 grep_string = {
                     additional_args = function()
-                        return { '--hidden' }
+                        return { '--hidden', '--max-filesize', '10M' }
                     end
                 },
                 buffers = {

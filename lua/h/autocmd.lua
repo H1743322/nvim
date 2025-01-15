@@ -32,7 +32,7 @@ autocmd({ "User" }, {
 autocmd({ "BufRead", "BufNewFile" }, {
 
     group = h,
-    pattern = "*.JSON",
+    pattern = { "*.JSON", "*.sarif" },
     command = 'set filetype=json'
 
 })
