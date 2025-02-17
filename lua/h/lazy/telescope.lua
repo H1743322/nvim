@@ -28,7 +28,20 @@ return {
                         -- width = 0.9, height = 0.9,
                         preview_cutoff = 90, preview_width = 0.6
                     },
+                    bottom_pane = {
+                        height = 0.4,
+                        preview_cutoff = 70,
+                        prompt_position = "bottom",
+                        preview_width = 0.6
+                    },
                 },
+                -- Ivy
+                -- borderchars = {
+                --     prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
+                --     results = { "─", " ", " ", " ", "─", "─", " ", " " },
+                --     preview = { "─", " ", "─", "│", "┬", "─", "─", "╰" },
+                -- },
+                -- layout_strategy = "bottom_pane"
             },
             pickers = {
                 find_files = {
@@ -61,6 +74,15 @@ return {
                 previewer = true,
             }))
         end)
+        -- vim.keymap.set('n', '<leader>ff', function()
+        --     require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
+        --             layout_config = {
+        --                 prompt_position = "bottom",
+        --                 height = 0.4
+        --             },
+        --             sorting_strategy = "descending"
+        --     }))
+        -- end)
         -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<C-p>', function()
             require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
