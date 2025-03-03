@@ -11,7 +11,8 @@ return {
             defaults = {
                 wrap_results = false,
                 preview = {
-                    treesitter = false
+                    treesitter = false,
+                    filesize_limit = 20
                 },
                 file_ignore_patterns = {
                     "node_modules",
@@ -29,36 +30,44 @@ return {
                         preview_cutoff = 90, preview_width = 0.6
                     },
                     bottom_pane = {
-                        height = 0.4,
-                        preview_cutoff = 70,
+                        height = 0.40,
+                        preview_cutoff = 90,
                         prompt_position = "bottom",
-                        preview_width = 0.6
+                        -- preview_width = 0.6
                     },
                 },
                 -- Ivy
-                -- borderchars = {
-                --     prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
-                --     results = { "─", " ", " ", " ", "─", "─", " ", " " },
-                --     preview = { "─", " ", "─", "│", "┬", "─", "─", "╰" },
-                -- },
-                -- layout_strategy = "bottom_pane"
+                results_title = false,
+                borderchars = {
+                    prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
+                    results = { "─", " ", " ", " ", "─", "─", " ", " " },
+                    -- preview = { "─", " ", "─", "│", "┬", "─", "─", "╰" },
+                    preview = { "─", " ", "", "│", "┬", "─", "", "│" },
+                },
+                layout_strategy = "bottom_pane",
+                -- dynamic_preview_title = true,
+
             },
             pickers = {
                 find_files = {
                     hidden = true,
-                    no_ignore = true
+                    no_ignore = true,
+                    preview_title = false,
                 },
                 live_grep = {
+                    preview_title = false,
                     additional_args = function()
                         return { '--hidden', '--max-filesize', '10M' }
                     end
                 },
                 grep_string = {
+                    preview_title = false,
                     additional_args = function()
-                        return { '--hidden', '--max-filesize', '10M' }
+                        return { '--hidden', '--max-filesize', '10M', '--trim' }
                     end
                 },
                 buffers = {
+                    preview_title = false,
                     show_all_buffers = true,
                     sort_lastused = true,
                     previewer = true,
@@ -68,28 +77,8 @@ return {
                 },
             }
         }
-        -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-        vim.keymap.set('n', '<leader>ff', function()
-            require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
-                previewer = true,
-            }))
-        end)
-        -- vim.keymap.set('n', '<leader>ff', function()
-        --     require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
-        --             layout_config = {
-        --                 prompt_position = "bottom",
-        --                 height = 0.4
-        --             },
-        --             sorting_strategy = "descending"
-        --     }))
-        -- end)
-        -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-        vim.keymap.set('n', '<C-p>', function()
-            require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
-                previewer = true,
-                windblend = 10,
-            }))
-        end)
+        vim.keymap.set('n', '<leader>ff', builtin.find_files)
+        vim.keymap.set('n', '<C-p>', builtin.git_files)
         vim.keymap.set('n', '<leader>fs', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
