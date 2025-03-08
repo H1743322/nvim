@@ -32,19 +32,25 @@ return {
                     bottom_pane = {
                         height = 0.40,
                         preview_cutoff = 90,
-                        prompt_position = "bottom",
+                        -- prompt_position = "bottom",
                         -- preview_width = 0.6
                     },
                 },
                 -- Ivy
                 results_title = false,
                 borderchars = {
-                    prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
-                    results = { "─", " ", " ", " ", "─", "─", " ", " " },
-                    -- preview = { "─", " ", "─", "│", "┬", "─", "─", "╰" },
-                    preview = { "─", " ", "", "│", "┬", "─", "", "│" },
+                    prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+                    results = { " " },
+                    preview = { "", "│", "", "│", "│", "", "", "" },
+                    -- Bottom Prompt
+                    -- prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
+                    -- results = { "─", " ", " ", " ", "─", "─", " ", " " },
+                    -- preview = { "─", " ", "", "│", "┬", "─", "", "│" },
+
+
                 },
                 layout_strategy = "bottom_pane",
+                sorting_strategy = "ascending",
                 -- dynamic_preview_title = true,
 
             },
