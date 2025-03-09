@@ -91,7 +91,7 @@ return {
         vim.keymap.set('n', '<leader>fh', builtin.help_tags)
         vim.keymap.set('n', '<leader>fb', builtin.buffers)
         vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-        vim.keymap.set('n', '<leader>frr', builtin.lsp_references)
+        vim.keymap.set('n', '<leader>fr', builtin.resume)
         vim.keymap.set('n', '<leader>fw', builtin.grep_string)
         vim.keymap.set('n', '<leader>fW', function()
             local word = vim.fn.expand("<cWORD>")
