@@ -42,6 +42,14 @@ return {
             return ret
         end
 
+        local filetype = function()
+            local file_ext = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':e')
+            if file_ext == vim.bo.filetype then
+                return ""
+            end
+            return vim.bo.filetype
+        end
+
         require('lualine').setup {
             options = {
                 icons_enabled = true,
@@ -62,9 +70,12 @@ return {
                 }
             },
             sections = {
-                lualine_a = { 'mode' },
+                lualine_a = {},
                 lualine_b = {
-                    { 'branch', fmt = trunc(28, false) },
+                    { 'branch', fmt = trunc(28, false), icons_enabled = false },
+                },
+                lualine_c = {
+                    { 'filename', path = 1 },
                     'diff',
                     { 'diagnostics', symbols = {
                         error = 'e',
@@ -74,23 +85,17 @@ return {
                     }
                     }
                 },
-                lualine_c = {
-                    { 'filename', path = 1 }
-                },
 
                 lualine_x = {
                     { get_active_clients, cond = hide_in_width, color = { fg = '#ffffff', gui = 'bold' } },
                     { encoding,           cond = hide_in_width },
                     { fileformat,         cond = hide_in_width },
-                    { 'filetype',         cond = hide_in_width }
+                    { filetype,           cond = hide_in_width, icons_enabled = false },
+
                 },
-                lualine_y = { 'progress' },
-                lualine_z = { 'location' }
+                lualine_y = { 'location' },
+                lualine_z = { 'progress' }
             },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
-            extensions = {}
         }
     end
 }
