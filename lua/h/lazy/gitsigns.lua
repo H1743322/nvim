@@ -3,6 +3,9 @@ return {
     event = "VeryLazy",
     config = function()
         require('gitsigns').setup {
+            preview_config = {
+                border = 'rounded',
+            },
             on_attach = function(bufnr)
                 local function map(mode, lhs, rhs, opts)
                     opts = vim.tbl_extend('force', { noremap = true, silent = true }, opts or {})

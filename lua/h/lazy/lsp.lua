@@ -85,7 +85,7 @@ return {
                 },
                 signs = true,
                 severity_sort = true,
-                underline = true,
+                underline = false,
                 -- {
                 --    severity = {
                 --        max = vim.diagnostic.severity.HINT,
@@ -113,52 +113,19 @@ return {
             --    cmp_lsp.default_capabilities())
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            local lspconfig = require("lspconfig")
-
+            vim.lsp.config('lua_ls', {
+                capabilities = lsp_capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim", "it", "describe", "before_each", "after_each" },
+                        },
+                    },
+                },
+            })
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
-                },
-                handlers = {
-                    function(server_name)
-                        require("lspconfig")[server_name].setup {
-                            capabilities = lsp_capabilities
-                        }
-                    end,
-
-                    lua_ls = function()
-                        lspconfig.lua_ls.setup {
-                            capabilities = lsp_capabilities,
-                            settings = {
-                                Lua = {
-                                    diagnostics = {
-                                        globals = { "vim", "it", "describe", "before_each", "after_each" },
-                                    },
-                                    -- hint = {
-                                    --    enable = true
-                                    -- }
-                                }
-                            }
-                        }
-                    end,
-                    -- gopls = function()
-                    --    lspconfig.gopls.setup {
-                    --        capabilities = lsp_capabilities,
-                    --        settings = {
-                    --            gopls = {
-                    --                hints = {
-                    --                    assignVariableTypes = true,
-                    --                    compositeLiteralFields = true,
-                    --                    compositeLiteralTypes = true,
-                    --                    constantValues = true,
-                    --                    functionTypeParameters = true,
-                    --                    parameterNames = true,
-                    --                    rangeVariableTypes = true,
-                    --                },
-                    --            },
-                    --        },
-                    --    }
-                    -- end
                 }
             })
         end
