@@ -15,13 +15,14 @@ return {
                     filesize_limit = 20
                 },
                 file_ignore_patterns = {
-                    "node_modules",
-                    "%.git",
-                    "%.yarn",
-                    "obj",
+                    "node_modules/",
+                    "%.git/",
+                    "%.yarn/",
+                    "%.cache/",
+                    "obj/",
                     "yarn%.lock",
-                    "dist",
-                    "build",
+                    "dist/",
+                    "build/",
                     "package%-lock"
                 },
                 layout_config = {
