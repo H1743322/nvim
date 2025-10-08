@@ -87,7 +87,7 @@ return {
                 },
 
                 lualine_x = {
-                    { get_active_clients, cond = hide_in_width, color = { fg = '#ffffff', gui = 'bold' } },
+                    { get_active_clients, cond = hide_in_width, color = { fg = '#ffffff' } },
                     { encoding,           cond = hide_in_width },
                     { fileformat,         cond = hide_in_width },
                     { filetype,           cond = hide_in_width, icons_enabled = false },

@@ -23,6 +23,7 @@ return {
                     "yarn%.lock",
                     "dist/",
                     "build/",
+                    "venv/",
                     "package%-lock"
                 },
                 layout_config = {
