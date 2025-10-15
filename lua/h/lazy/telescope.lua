@@ -42,8 +42,8 @@ return {
                 results_title = false,
                 borderchars = {
                     prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-                    results = { " " },
-                    preview = { "", "│", "", "│", "│", "", "", "" },
+                    results = { "" },
+                    preview = { "", "", "", "│", "│", "", "", "" },
                     -- Bottom Prompt
                     -- prompt = { " ", " ", "─", " ", " ", " ", "─", "─" },
                     -- results = { "─", " ", " ", " ", "─", "─", " ", " " },
