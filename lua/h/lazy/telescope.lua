@@ -19,6 +19,7 @@ return {
                     "%.git/",
                     "%.yarn/",
                     "%.cache/",
+                    "external/",
                     "obj/",
                     "yarn%.lock",
                     "dist/",
