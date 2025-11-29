@@ -37,6 +37,16 @@ autocmd({ "BufRead", "BufNewFile" }, {
 
 })
 
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = h,
+    pattern = "gitcommit",
+    callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = "en"
+    end,
+})
+
 -- autocmd('FileType', {
 --    group = h,
 --    pattern = { 'javascript', 'typescript' },
