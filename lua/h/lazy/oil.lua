@@ -14,31 +14,16 @@ return {
                 "icon",
             },
             win_options = {
-                wrap = false,
+                wrap = false
+            },
+            view_options = {
+                show_hidden = true
             },
             keymaps = {
-                ["<C-t>"] = {
-                    callback = function()
-                        require("oil").select({ tab = true, close = true })
-                    end,
-                    desc = "Open in new tab and close Oil",
-                    mode = "n",
-                },
-                ["<C-h>"] = {
-                    callback = function()
-                        require("oil").select({ horizontal = true, close = true })
-                    end,
-                    desc = "Open in horizontal split and close Oil",
-                    mode = "n",
-                },
-                ["<C-s>"] = {
-                    callback = function()
-                        require("oil").select({ vertical = true, close = true })
-                    end,
-                    desc = "Open in vertical split and close Oil",
-                    mode = "n",
-                },
-            },
+                ["<C-s>"] = { "actions.select", opts = { vertical = true, close = true } },
+                ["<C-h>"] = { "actions.select", opts = { horizontal = true, close = true } },
+                ["<C-t>"] = { "actions.select", opts = { tab = true, close = true } }
+            }
         })
         vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end
