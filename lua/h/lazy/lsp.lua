@@ -54,8 +54,8 @@ return {
                     end,
                 },
                 window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
+                    -- completion = cmp.config.window.bordered(),
+                    -- documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
                     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
@@ -94,16 +94,13 @@ return {
                 update_in_insert = false,
                 float = {
                     header = '',
-                    border = 'rounded',
+                    border = 'none',
                     focusable = false,
                     style = "minimal",
                     source = "if_many",
 
                 },
             })
-
-            vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-            vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
             -- local cmp_lsp = require("cmp_nvim_lsp")
             -- local lsp_capabilities = vim.tbl_deep_extend(
