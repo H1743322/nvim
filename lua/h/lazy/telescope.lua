@@ -25,7 +25,8 @@ return {
                     "dist/",
                     "build/",
                     "venv/",
-                    "package%-lock"
+                    "package%-lock",
+                    "%.pb%..*"
                 },
                 layout_config = {
                     horizontal = {
