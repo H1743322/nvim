@@ -1,5 +1,5 @@
 return {
-    "H1743322/gruber-darker-colorscheme",
+    "H1743322/gruber-darker.vim",
     lazy = false,
     priority = 1000,
     config = function ()
