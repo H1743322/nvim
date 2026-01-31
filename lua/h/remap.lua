@@ -74,4 +74,7 @@ noremap <C-Up> :resize +3<CR>
 noremap <C-Down> :resize -3<CR>
 
 let g:ftplugin_sql_omni_key = '<C-j>'
+
+command! -bang -nargs=? Mak Dispatch<bang> make <args>
+cnoreabbrev mak Mak
 ]])
