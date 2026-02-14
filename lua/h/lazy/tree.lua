@@ -4,7 +4,8 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    event = 'VeryLazy',
+    keys = { { "<leader>t", "<cmd>NvimTreeToggle<cr>" } },
+    lazy = true,
     config = function()
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
