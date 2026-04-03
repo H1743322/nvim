@@ -3,7 +3,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function ()
-        vim.g.original_colors = 0
+        vim.g.original_colors = 1
         vim.cmd.colorscheme "gruber"
     end
 }
