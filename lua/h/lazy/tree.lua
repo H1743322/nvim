@@ -4,6 +4,8 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
+    keys = { { "<leader>t", "<cmd>NvimTreeToggle<cr>" } },
+    lazy = true,
     config = function()
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
@@ -69,6 +71,6 @@ return {
 
         })
 
-        vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<cr>")
+        -- vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<cr>")
     end,
 }

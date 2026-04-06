@@ -4,7 +4,7 @@ return {
     config = function()
         require('gitsigns').setup {
             preview_config = {
-                border = 'rounded',
+                border = 'none'
             },
             on_attach = function(bufnr)
                 local function map(mode, lhs, rhs, opts)

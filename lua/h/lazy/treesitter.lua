@@ -2,8 +2,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufEnter" },
+    branch = 'main',
+    lazy = false,
+    -- TODO: fix for neovim v0.12.x
     config = function()
-        require 'nvim-treesitter.configs'.setup {
+        require 'nvim-treesitter'.setup {
 
             ensure_installed = {
                 "javascript",
@@ -22,7 +25,7 @@ return {
             auto_install = true,
 
             indent = {
-                enable = true
+                enable = true,
             },
 
             highlight = {
