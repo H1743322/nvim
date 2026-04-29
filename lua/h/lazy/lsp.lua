@@ -77,6 +77,9 @@ return {
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function()
+
+            vim.lsp.semantic_tokens.enable(false)
+
             vim.diagnostic.config({
                 virtual_text = {
                     severity = {
