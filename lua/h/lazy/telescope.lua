@@ -3,11 +3,18 @@ return {
     tag = "v0.2.1",
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        {
+            "nvim-telescope/telescope-live-grep-args.nvim",
+            version = "^1.0.0",
+        },
     },
     config = function()
         local builtin = require('telescope.builtin')
-        require "telescope".setup {
+        local telescope = require("telescope")
+        local lga_actions = require("telescope-live-grep-args.actions")
+
+        telescope.setup {
             defaults = {
                 wrap_results = false,
                 preview = {
@@ -36,8 +43,8 @@ return {
                         preview_cutoff = 90, preview_width = 0.6
                     },
                     bottom_pane = {
-                        height = 0.40,
-                        preview_cutoff = 90,
+                        -- height = 0.40,
+                        -- preview_cutoff = 90,
                         -- prompt_position = "bottom",
                         -- preview_width = 0.6
                     },
@@ -72,6 +79,12 @@ return {
                         return { '--hidden', '--max-filesize', '10M' }
                     end
                 },
+                live_grep_args = {
+                    preview_title = false,
+                    additional_args = function()
+                        return { '--hidden', '--max-filesize', '10M' }
+                    end
+                },
                 grep_string = {
                     preview_title = false,
                     additional_args = function()
@@ -86,9 +99,23 @@ return {
                     mappings = {
                         i = { ["<c-d>"] = "delete_buffer" }
                     }
-                },
+                }
+            },
+            extensions = {
+                live_grep_args = {
+                    auto_quoting = true,
+                    preview_title = false,
+                    mappings = {
+                        i = {
+                            ["<C-k>"] = lga_actions.quote_prompt(),
+                            ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                            -- ["<C-space>"] = lga_actions.to_fuzzy_refine,
+                        }
+                    }
+                }
             }
         }
+
         vim.keymap.set('n', '<leader>ff', builtin.find_files)
         vim.keymap.set('n', '<C-p>', builtin.git_files)
         vim.keymap.set('n', '<leader>fs', function()
@@ -97,6 +124,10 @@ return {
         vim.keymap.set('n', '<leader>fh', builtin.help_tags)
         vim.keymap.set('n', '<leader>fb', builtin.buffers)
         vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+        -- FIXME: additional_args not working
+        vim.keymap.set('n', '<leader>ft', function()
+            telescope.extensions.live_grep_args.live_grep_args()
+        end)
         vim.keymap.set('n', '<leader>fr', builtin.resume)
         vim.keymap.set('n', '<leader>fw', builtin.grep_string)
         vim.keymap.set('n', '<leader>fW', function()
@@ -112,11 +143,12 @@ return {
             end
         end)
         vim.keymap.set('n', '<leader>/', function()
-            require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+            builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
                 previewer = false,
             }))
         end)
 
-        require('telescope').load_extension('fzf')
+        telescope.load_extension('fzf')
+        telescope.load_extension("live_grep_args")
     end
 }
