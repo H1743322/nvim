@@ -6,7 +6,6 @@ return {
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         {
             "nvim-telescope/telescope-live-grep-args.nvim",
-            version = "^1.0.0",
         },
     },
     config = function()
@@ -81,9 +80,6 @@ return {
                 },
                 live_grep_args = {
                     preview_title = false,
-                    additional_args = function()
-                        return { '--hidden', '--max-filesize', '10M' }
-                    end
                 },
                 grep_string = {
                     preview_title = false,
@@ -105,6 +101,9 @@ return {
                 live_grep_args = {
                     auto_quoting = true,
                     preview_title = false,
+                    additional_args = function()
+                        return { '--hidden', '--max-filesize', '10M' }
+                    end,
                     mappings = {
                         i = {
                             ["<C-k>"] = lga_actions.quote_prompt(),
@@ -123,9 +122,8 @@ return {
         end)
         vim.keymap.set('n', '<leader>fh', builtin.help_tags)
         vim.keymap.set('n', '<leader>fb', builtin.buffers)
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-        -- FIXME: additional_args not working
-        vim.keymap.set('n', '<leader>ft', function()
+        vim.keymap.set('n', '<leader>ft', builtin.live_grep)
+        vim.keymap.set('n', '<leader>fg', function()
             telescope.extensions.live_grep_args.live_grep_args()
         end)
         vim.keymap.set('n', '<leader>fr', builtin.resume)
