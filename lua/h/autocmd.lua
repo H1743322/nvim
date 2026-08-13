@@ -71,6 +71,7 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
         vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
         vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
+        vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = 'none' }) end, opts)
         vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help({ border = 'none' }) end, opts)
