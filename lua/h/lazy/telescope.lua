@@ -34,7 +34,8 @@ return {
                     "package%-lock",
                     "%.pb%..*",
                     "%.o",
-                    "%.d"
+                    "%.d",
+                    "third_party/"
                 },
                 layout_config = {
                     horizontal = {
