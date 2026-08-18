@@ -10,7 +10,7 @@ autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
-            timeout = 200,
+            timeout = 500,
         })
     end,
 })
@@ -44,6 +44,19 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.spell = true
         vim.opt_local.spelllang = "en"
+    end,
+})
+
+-- restore cursor
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = h,
+    pattern = "*",
+    callback = function()
+        if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+            if not vim.fn.expand("%:p"):find(".git", 1, true) then
+                vim.cmd('exe "normal! g\'\\""')
+            end
+        end
     end,
 })
 

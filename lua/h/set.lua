@@ -57,3 +57,6 @@ vim.opt.updatetime = 300
 -- Decrease mapped sequence wait time
 -- vim.opt.timeoutlen = 300
 -- vim.opt.inccommand = "split"
+
+-- wild
+vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
