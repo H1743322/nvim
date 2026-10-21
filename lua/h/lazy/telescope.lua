@@ -76,16 +76,19 @@ return {
                 live_grep = {
                     preview_title = false,
                     additional_args = function()
-                        return { '--hidden', '--max-filesize', '10M' }
+                        return { '--hidden', '--no-ignore', '--max-filesize', '10M' }
                     end
                 },
                 live_grep_args = {
                     preview_title = false,
+                    additional_args = function()
+                        return { '--hidden', '--no-ignore', '--max-filesize', '10M', '--trim' }
+                    end
                 },
                 grep_string = {
                     preview_title = false,
                     additional_args = function()
-                        return { '--hidden', '--max-filesize', '10M', '--trim' }
+                        return { '--hidden', '--no-ignore', '--max-filesize', '10M', '--trim' }
                     end
                 },
                 buffers = {
@@ -103,7 +106,7 @@ return {
                     auto_quoting = true,
                     preview_title = false,
                     additional_args = function()
-                        return { '--hidden', '--max-filesize', '10M' }
+                        return { '--hidden', '--no-ignore', '--max-filesize', '10M' }
                     end,
                     mappings = {
                         i = {
@@ -136,7 +139,7 @@ return {
         vim.keymap.set('v', '<leader>fw', function()
             vim.cmd('normal! "vy')
             local text = vim.fn.getreg('v')
-            -- text = string.gsub(selected_text, "\n", "")
+            text = vim.trim(text)
             if text and #text > 0 then
                 builtin.grep_string({ search = text })
             end
